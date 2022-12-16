@@ -1,14 +1,3 @@
-const Sequelize = require("sequelize");
-
-const DB_NAME = "lavie";
-const DB_USER = "root";
-const DB_PASS = "Lolita23q!";
-const DB_CONFIG = {
-  dialect: "mysql",
-  host: "localhost",
-  port: 3306,
-};
-
 // objeto para guardar a conexão do banco dados
 let db = {};
 
@@ -21,14 +10,14 @@ try {
 async function hasConnection() {
   try {
     await db.authenticate();
-    console.log("✔ - Banco dados conectado");
+    console.log("✔ - Banco de dados conectado");
   } catch (error) {
     console.log(error);
     console.error("Erro ao tentar se conectar ao banco de dados 🚨");
   }
 }
 
-// db.hasConection = hasConection
+// db.hasConnection = hasConnection
 Object.assign(db, {
   hasConnection,
 });
