@@ -1,5 +1,6 @@
 const express = require("express");
 const Atendimentos = require("../models/Atendimentos");
+const Pacientes = require("../models/Pacientes");
 
 const atendimentoController = {
 
@@ -12,16 +13,15 @@ const atendimentoController = {
         return res.status(500).json("Ocorreu algum problema!");
     }},
 
-    //Precisa pegar paciente_id
     async atendimentoId(req, res){
         const {id} = req.params;
-        await Atendimentos.findOne({
+        await Pacientes.findOne({
             where: {
                 id
             },
         });
 
-        res.json("Atendimento atual");
+        res.json(req.body);
     },
     
     async registrarAtendimento(req, res){
