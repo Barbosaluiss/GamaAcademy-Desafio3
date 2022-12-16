@@ -1,5 +1,5 @@
 const Psicologos = require("./psicologos");
-// const Paciente = require("./paciente");
+const Pacientes = require("./Pacientes");
 // const Atendimentos = require("./atendimentos");
 
 
@@ -23,6 +23,6 @@ const Psicologos = require("./psicologos");
 
 module.exports = {
   Psicologos,
-  // Pacientes,
+  Pacientes,
   // Atendimentos,
 };
