@@ -1,4 +1,4 @@
-const { Usuarios } = require("../models");
+const { Psicologos } = require("../models");
 const jwt = require("jsonwebtoken");
 const secret = require("../configs/secret");
 const bcrypt = require("bcryptjs");
@@ -7,7 +7,7 @@ const AuthController = {
   async login(req, res) {
     const { email, senha } = req.body;
 
-    const usuario = await Usuarios.findOne({
+    const usuario = await Psicologos.findOne({
       where: {
         email,
       },
@@ -18,8 +18,9 @@ const AuthController = {
     }
 
     if (!bcrypt.compareSync(senha, usuario.senha)) {
-      return res.status(401).json("Senha invalida!");
+      return res.status(401).json("E-mail ou Senha invalida, tente novamente!");
     }
+
 
     const token = jwt.sign(
       {
@@ -34,5 +35,6 @@ const AuthController = {
     return res.json(token);
   },
 };
+
 
 module.exports = AuthController;
