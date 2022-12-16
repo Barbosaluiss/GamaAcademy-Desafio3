@@ -1,4 +1,5 @@
 const { Psicologos } = require("../models");
+const bcrypt = require("bcryptjs");
 
 // ---------->>>>> Listar todos os psicólogos:
 
@@ -35,22 +36,23 @@ const psicologosController = {
 
     async cadastrarPsicologo(req, res) {
         try {
-            console.log(req.auth);
 
             const { nome, email, senha, apresentacao } = req.body;
+            const newSenha = bcrypt.hashSync(senha, 10);
 
             const novoPsicologo = await Psicologos.create({
                 nome,
                 email,
-                senha,
+                senha: newSenha,
                 apresentacao,
             });
-
-            res.status(201).json(novoPsicologo);
 
             if (!nome || !email || !senha || !apresentacao){
                 return res.status(400).json("Todos os campos precisam ser preenchidos.")
             };
+
+            res.status(201).json(novoPsicologo);
+
 
         } catch (err) {
             console.log(err);
